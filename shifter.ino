@@ -12,7 +12,7 @@ void setup()
   pinMode(latchPin, OUTPUT);  //seting direction of pins
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);  
-  
+  Serial.begin(9600);
   //convertion relay status in array to bytes
   byte firstByte = 0;
   byte secondByte = 0;
@@ -27,6 +27,11 @@ void setup()
     secondByte = secondByte << i;
     secondByte = secondByte | (relay[i+8]&0x01);
   }
+  Serial.print("firstByte");
+  Serial.println(firstByte);
+  
+  Serial.print("secondByte");
+  Serial.println(secondByte);
   
   digitalWrite(latchPin, LOW);  //make the latch pin low. so that output will not change during shifting
   
